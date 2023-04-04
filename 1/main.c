@@ -1,25 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
-int s, kume[100], tekrar, eksik;
-printf("Kac sayi iceren s kumesi: ");
-scanf("%d",&s);
-
-for (int i=1; i<=s; i++) {
-    kume[i-1] = i; 
-}
-
-for (int i=0; i<s; i++) {
-    for (int j=i+1; j<s; j++) {
-        if (kume[i] == kume[j]) {
-            tekrar = kume[i];
-            eksik = j+1;
-            goto son;
-        } 
+int main() {
+    int s, kume[100], tekrar = 0, eksik = 0;
+    
+    printf("Kac sayi iceren s kumesi: ");
+    scanf("%d",&s);
+    
+    for (int i = 0; i < s; i++) {
+        kume[i] = i + 1; 
     }
-}
-son:
-printf("Tekrar eden sayi: %d\nEksik sayi: %d\n", tekrar, eksik);
+    
+    for (int i = 0; i < s; i++) {
+        for (int j = i + 1; j < s; j++) {
+            if (kume[i] == kume[j]) {
+                tekrar = kume[i];
+                break;
+            } 
+        }
+    }
+    
+    for (int i = 0; i < s; i++) {
+        if (kume[i] != i + 1) {
+            eksik = i + 1;
+            break;
+        }
+    }
+    
+    printf("Tekrar eden sayi: %d\nEksik sayi: %d\n", tekrar, eksik);
+    
+    return 0;
 }
